@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MuchBetter</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header class="h1">MuchBetterDictionary<br /><span>The dictionary that does more!</span>
+      </header>
+      <br/>
+      <div class="input">
+        <button class="btn-search" type="button">
+        <input type="text" class="search-field" placeholder="What's the word?" onkeypress="handle(event)"/>
+      </div>
+      <div class="result">
+        <h1 class="word"></h1>
+        <p class="phonetics"></p>
+        <audio src="" controls></audio>
+        <p class="wordmeaning"></p>
+        <p class="word-definition"></p>
+        <p class="wordmeaning"></p>
+        <div class="synonyms"></div>
+      </div>
+    </div>
+    <script src="./script.js"></script>
+  </body>
+</html>
