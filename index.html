@@ -15,16 +15,68 @@
         <button class="btn-search" type="button">
         <input type="text" class="search-field" placeholder="What's the word?" onkeypress="handle(event)"/>
       </div>
-      <div class="result">
+    </div>
+
+      <!-- "short-def" is a short, condensed definition -->
+      <section class="card-main">
+        <header>At a Glance</header>
         <h1 class="word"></h1>
+        <h2 class="short-def"></h2>
         <p class="phonetics"></p>
         <audio src="" controls></audio>
-        <p class="wordmeaning"></p>
-        <p class="word-definition"></p>
-        <p class="wordmeaning"></p>
-        <div class="synonyms"></div>
-      </div>
-    </div>
+        <img src="" alt="" />
+        <img src="" alt="" />
+        <img src="" alt="" />
+        <img src="" alt="" />
+        <img src="" alt="" />
+        <img src="" alt="" />
+      </section>
+
+      <!-- "functional-label" shows if a verb, noun, adjective etc
+
+      "homographs" are for words like 'wind', 'bear', 'bat' etc > 
+      where identically spelled words have completely different meanings
+
+    "label" provides brief note on grammatical function 
+    (eg "often attributive) or (eg "informal", "slang", "offensive") etc! -->
+
+      <section class="card-definitions">
+        <header>Definitions</header>
+        <h3 class="functional-label"></h3>
+        <p class="definition"></p>
+        <h3>Example</h3>
+        <p class="example"></p>
+        <h3>Related words</h3>
+        <p class="synonyms"></p>
+        <h3>Homographs</h3>
+        <p class="homographs"></p>
+        <h3>Grammatical function</h3>
+        <p class="labels"></p>
+        <p></p>
+      </section>
+
+      <section class="card-etymology">
+        <header>Etymology</header>
+        <h3>Definition</h3>
+        <p class="etymology"></p>
+        <img src="" alt="" />
+      </section>
+
+      <section class="card-recent-searches">
+        <header>Recent searches</header>
+        <ul class="search-history">Jump Back in!</ul>
+      </section>
+
+      <section class="wordoftheday">
+        <header>Word of the day</header>
+        <ul class="today-word"></ul>
+        <link rel="stylesheet" href="">
+        <img src="" alt="" />
+      </section>
+      
+      <div class="result"></div>
+      
+    
     <script src="./script.js"></script>
   </body>
 </html>

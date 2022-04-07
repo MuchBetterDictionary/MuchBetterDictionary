@@ -22,7 +22,8 @@ const handle = async (e) => {
     wordEl.innerText = data[0].word;
     phonetics.innerText = data[0].phonetics[0].text;
     audio.src = data[0].phonetics[0].audio;
-    wordMeaning.innerText = data[0].meanings[0].definitions[0].definition;
+    wordMeaning.innerText = data[0].meanings[0].partOfSpeech[0].noun[0];defintions[0];
+    for (var i=0; i < defintions.length; i++);    
     synonyms.innerText = data[0].meanings[0].definitions[0].synonyms;
   }
 };
