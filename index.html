@@ -11,12 +11,15 @@
       <header class="h1">MuchBetterDictionary<br /><span class="h2">The dictionary that does more!</span>
       </header>
       <br/>
-      <div class="input">
-        <button class="btn-search" type="button">
-        <input type="text" class="search-field" placeholder="What's the word? 🔎" onkeypress="handle(event)"/>
-      </div>
-    </div>
 
+      <!-- Search Form // Search Bar -->
+      <form id="word-search" class="input">
+        <input id="word-name" type="text" class="search-field" autofocus="true" placeholder="What's the word?" onkeypress="handle(event)"/>
+        <button class="btn-search" type="button">GET
+        </button>
+      </form>
+
+      <!-- AT A GLANCE BOX box -->
       <!-- "short-def" is a short, condensed definition -->
       <section class="card-main">
         <header>At a Glance</header>
@@ -39,7 +42,7 @@
 
     "label" provides brief note on grammatical function 
     (eg "often attributive) or (eg "informal", "slang", "offensive") etc! -->
-
+<!-- DEFINITION BOX -->
       <section class="card-definitions">
         <header>Definitions</header>
         <h3 class="functional-label"></h3>
@@ -55,6 +58,7 @@
         <p></p>
       </section>
 
+      <!-- ETYMOLOGY BOX -->
       <section class="card-etymology">
         <header>Etymology</header>
         <h3>Definition</h3>
@@ -62,6 +66,7 @@
         <img src="" alt="" />
       </section>
 
+      <!-- SEARCH HISTORY BOX -->
       <section class="card-recent-searches">
         <header>Recent searches</header>
         <ul class="search-history">Jump Back in!</ul>
