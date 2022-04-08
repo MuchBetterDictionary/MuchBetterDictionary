@@ -3,81 +3,76 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>MuchBetter</title>
-    <link rel="stylesheet" href="style.css" />
+    <title>MuchBetterDictionary | Homepage</title>
+    <link rel="stylesheet" href="./assets/css/style.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://kit.fontawesome.com/ec09384b84.js"
+      crossorigin="anonymous"
+    ></script>
   </head>
   <body>
-    <div class="container">
-      <header class="h1">MuchBetterDictionary<br /><span class="h2">The dictionary that does more!</span>
+    <div class="wrapper container-fluid my-5 px-3">
+      <!-- Header Section -->
+      <header>
+        <h1 class="main-title text-center">MuchBetterDictionary</h1>
+        <p class="subtitle text-center">the dictionary that does more!</p>
       </header>
-      <br/>
-      <div class="input">
-        <button class="btn-search" type="button">
-        <input type="text" class="search-field" placeholder="What's the word? 🔎" onkeypress="handle(event)"/>
-      </div>
-    </div>
 
-      <!-- "short-def" is a short, condensed definition -->
-      <section class="card-main">
-        <header>At a Glance</header>
-        <h1 class="word"></h1>
-        <h2 class="short-def"></h2>
-        <p class="phonetics"></p>
-        <audio src="" controls></audio>
-        <img src="" alt="" />
-        <img src="" alt="" />
-        <img src="" alt="" />
-        <img src="" alt="" />
-        <img src="" alt="" />
-        <img src="" alt="" />
+      <!-- Search Bar -->
+      <section id="search-bar">
+        <div class="row">
+          <div class="col-md-4 search">
+            <form id="word-search-form">
+              <input
+                type="text"
+                id="word-input"
+                class="form-control rounded-pill"
+                placeholder="What's the word?"
+              />
+              <i class="fa fa-search"></i>
+            </form>
+          </div>
+        </div>
       </section>
 
-      <!-- "functional-label" shows if a verb, noun, adjective etc
+      <!-- Main Section to Display Word Information -->
+      <section id="main-content" class="hidden">
+        <div id="card-main" class="row card mx-5">
+          <div id="term" class="col-4 card-body">
+            <h2 id="word" class="card-title"></h2>
+            <p id="short-def" class="card-subtitle"></p>
+            <p id="phonetics"></p>
+          </div>
+          <div id="images" class="col-8 mt-4">
+            <div id="images-first-row" class="row"></div>
+            <div id="images-second-row" class="row"></div>
+          </div>
+        </div>
+        <!-- "short-def" is a short, condensed definition -->
+
+        <!-- "functional-label" shows if a verb, noun, adjective etc
 
       "homographs" are for words like 'wind', 'bear', 'bat' etc > 
       where identically spelled words have completely different meanings
 
     "label" provides brief note on grammatical function 
     (eg "often attributive) or (eg "informal", "slang", "offensive") etc! -->
-
-      <section class="card-definitions">
-        <header>Definitions</header>
-        <h3 class="functional-label"></h3>
-        <p class="definition"></p>
-        <h3>Example</h3>
-        <p class="example"></p>
-        <h3>Related words</h3>
-        <p class="synonyms"></p>
-        <h3>Homographs</h3>
-        <p class="homographs"></p>
-        <h3>Grammatical function</h3>
-        <p class="labels"></p>
-        <p></p>
+        <div id="card-definitions" class="row"></div>
       </section>
 
-      <section class="card-etymology">
-        <header>Etymology</header>
-        <h3>Definition</h3>
-        <p class="etymology"></p>
-        <img src="" alt="" />
-      </section>
+      <!-- Past Searches Section -->
+      <section id="past-searches" class="hidden"></section>
 
-      <section class="card-recent-searches">
-        <header>Recent searches</header>
-        <ul class="search-history">Jump Back in!</ul>
-      </section>
-     <div class="word">
-      <section class="wordoftheday">
-        <header class="day">Word of the day</header>
-        <ul class="today-word"></ul>
-        <link rel="stylesheet" href="">
-        <img src="" alt="" />
-      </section>
-      </div>
-      
-      <div class="result"></div>
-      
-    
-    <script src="./script.js"></script>
+      <!-- Popular Words Section -->
+      <section id="popular-words" class="hidden"></section>
+    </div>
+
+    <script src="./assets/js/script.js"></script>
   </body>
 </html>
