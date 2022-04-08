@@ -55,3 +55,51 @@ function getDefinition(event) {
 
 // Event Listener for Search Bar
 searchWord.addEventListener("submit", getDefinition);
+
+
+
+// //Merriam Webster API key (Ross account)
+// var apiKey = "676327db-9f8e-4212-a0e1-d73850d216df"
+// //Request URL `https://www.dictionaryapi.com/api/v3/references/collegiate/json/${word)?key=apiKey`
+// var formSubmitHandler = function (event) {
+//   event.preventDefault();
+
+//   var wordName = wordNameEl.value.trim();
+//   console.log(wordName);
+
+//   if (wordName) {
+// //functions to write to be called within this fetch
+//     getWordData(wordName);
+//     getDefinition(wordName);
+//     getEtymology(wordName);
+//     storeWord(wordName);
+//     wordNameEl.value = "";
+//   } else {
+//     alert("Do you have the correct spelling?");
+//   }
+// };
+
+// var getWordData = function (word) {
+//   var wordData =
+//     "https://www.dictionaryapi.com/api/v3/references/collegiate/json/" +
+//     word +
+//     "?key=" +
+//     apiKey;
+
+//   fetch(wordData).then(function (response) {
+//     if (response.ok) {
+//       response.json().then(function (data) {
+//         console.log(data);
+//         //short definition
+//         console.log(data[0].shortdef[0]);
+//         //pronounciation
+//         console.log(data[0].hwi.prs[0]);
+//         displayWordData(data);
+
+//       });
+//     } else {
+//       alert("Error: " + response.cod);
+//     }
+    
+//   });
+// };
