@@ -33,25 +33,56 @@ function getImages(term) {
   axios
     .get(pexelURL, { headers: { Authorization: `Bearer ${pexelApiKey}` } })
     .then(displayImages);
+    getImages(response.data[0].word);
 }
 
-function handleDictResponse(response) {
-  console.log(response);
-  mainEl.setAttribute("style", "display: block;");
-  wordEl.innerText = response.data[0].word;
-  phonetics.innerText = response.data[0].phonetics[0].text;
-
-  getImages(response.data[0].word);
-}
-
-function getDefinition(event) {
+//Merriam Webster API key (Ross account)
+var apiKey = "676327db-9f8e-4212-a0e1-d73850d216df"
+//Request URL `https://www.dictionaryapi.com/api/v3/references/collegiate/json/${word)?key=apiKey`
+var formSubmitHandler = function (event) {
   event.preventDefault();
 
-  const word = document.querySelector("#word-input");
-  const dictRequestUrl = `https://api.dictionaryapi.dev/api/v2/entries/en/${word.value}`;
+  var wordName = wordNameEl.value.trim();
+  console.log(wordName);
 
-  axios.get(dictRequestUrl).then(handleDictResponse);
-}
+  if (wordName) {
+//functions to write to be called within this fetch
+    getWordData(wordName);
+    // getDefinition(wordName);
+    // getEtymology(wordName);
+    // storeWord(wordName);
+    // wordNameEl.value = "";
+  } else {
+    alert("Do you have the correct spelling?");
+  }
+};
+
+var getWordData = function (word) {
+  var wordData =
+    "https://www.dictionaryapi.com/api/v3/references/collegiate/json/" +
+    word +
+    "?key=" +
+    apiKey;
+
+  fetch(wordData).then(function (response) {
+    if (response.ok) {
+      response.json().then(function (data) {
+        console.log(data);
+        //short definition
+        console.log(data[0].shortdef[0]);
+        //pronounciation
+        console.log(data[0].hwi.prs[0]);
+        displayWordData(data);
+
+      });
+    } else {
+      alert("Error: " + response.cod);
+    }
+    
+  });
+};
+
+var displayWordData = function(data) {}
 
 // Event Listener for Search Bar
-searchWord.addEventListener("submit", getDefinition);
+searchWord.addEventListener("submit", getWordData);
