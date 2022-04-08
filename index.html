@@ -8,12 +8,12 @@
   </head>
   <body>
     <div class="container">
-      <header class="h1">MuchBetterDictionary<br /><span>The dictionary that does more!</span>
+      <header class="h1">MuchBetterDictionary<br /><span class="h2">The dictionary that does more!</span>
       </header>
       <br/>
       <div class="input">
         <button class="btn-search" type="button">
-        <input type="text" class="search-field" placeholder="What's the word?" onkeypress="handle(event)"/>
+        <input type="text" class="search-field" placeholder="What's the word? 🔎" onkeypress="handle(event)"/>
       </div>
     </div>
 
@@ -66,13 +66,14 @@
         <header>Recent searches</header>
         <ul class="search-history">Jump Back in!</ul>
       </section>
-
+     <div class="word">
       <section class="wordoftheday">
-        <header>Word of the day</header>
+        <header class="day">Word of the day</header>
         <ul class="today-word"></ul>
         <link rel="stylesheet" href="">
         <img src="" alt="" />
       </section>
+      </div>
       
       <div class="result"></div>
       
