@@ -1,6 +1,8 @@
 // Declare Global Variables
 const mainEl = document.getElementById("main-content");
+const wordnameEl = document.getElementById("word-input");
 const wordEl = document.getElementById("word");
+const wordNameEl = document.getElementById("word-name");
 const phonetics = document.getElementById("phonetics");
 const audio = document.getElementById("audio");
 const wordMeaning = document.getElementById("word-definition");
@@ -8,6 +10,8 @@ const synonyms = document.getElementById("synonyms");
 const imagesRow1 = document.getElementById("images-first-row");
 const imagesRow2 = document.getElementById("images-second-row");
 const searchWord = document.getElementById("word-search-form");
+const wordHistoryEl = document.getElementById("word-history");
+const apiKey = "676327db-9f8e-4212-a0e1-d73850d216df";
 
 function displayImages(response) {
   for (i = 0; i < 3; i++) {
@@ -57,49 +61,42 @@ function getDefinition(event) {
 searchWord.addEventListener("submit", getDefinition);
 
 
-
 // //Merriam Webster API key (Ross account)
 // var apiKey = "676327db-9f8e-4212-a0e1-d73850d216df"
 // //Request URL `https://www.dictionaryapi.com/api/v3/references/collegiate/json/${word)?key=apiKey`
-// var formSubmitHandler = function (event) {
-//   event.preventDefault();
 
-//   var wordName = wordNameEl.value.trim();
-//   console.log(wordName);
+var historySearch = function (event) {
+  var wordSearch = event.target.textContent;
 
-//   if (wordName) {
-// //functions to write to be called within this fetch
-//     getWordData(wordName);
-//     getDefinition(wordName);
-//     getEtymology(wordName);
-//     storeWord(wordName);
-//     wordNameEl.value = "";
-//   } else {
-//     alert("Do you have the correct spelling?");
-//   }
-// };
+  getDefinition(wordSearch);
+  handleDictResponse(wordSearch);
+};
 
-// var getWordData = function (word) {
-//   var wordData =
-//     "https://www.dictionaryapi.com/api/v3/references/collegiate/json/" +
-//     word +
-//     "?key=" +
-//     apiKey;
+var storeWord = function (searchWord) {
+  var wordBtn = document.createElement("btn");
+  wordBtn.textContent = wordName;
+  wordBtn.classList = "col-12 word-btn";
 
-//   fetch(wordData).then(function (response) {
-//     if (response.ok) {
-//       response.json().then(function (data) {
-//         console.log(data);
-//         //short definition
-//         console.log(data[0].shortdef[0]);
-//         //pronounciation
-//         console.log(data[0].hwi.prs[0]);
-//         displayWordData(data);
+  wordHistoryEl.appendChild(wordBtn);
 
-//       });
-//     } else {
-//       alert("Error: " + response.cod);
-//     }
-    
-//   });
-// };
+  searchHistory.push(searchWord);
+
+  localStorage.setItem("words", JSON.stringify(searchHistory));
+};
+
+var loadWord = function () {
+  storedSearches = JSON.parse(localStorage.getItem("words"));
+
+  if (!storedSearches) {
+    storedSearches = [];
+  }
+
+  for (var i = 0; i < storedSearches.length; i++) {
+    storeWord(storedSearches[i]);
+  }
+};
+
+loadWord();
+
+wordHistoryEl.addEventListener("click", historySearch);
+searchWord.addEventListener("submit", getDefinition);
