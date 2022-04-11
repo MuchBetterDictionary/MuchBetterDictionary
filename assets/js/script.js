@@ -1,109 +1,61 @@
 // Declare Global Variables
-const apiKey = '676327db-9f8e-4212-a0e1-d73850d216df';
-const mainEl = document.getElementById("main-content");
-const wordEl = document.getElementById("word");
-const phonetics = document.getElementById("phonetics");
-const audio = document.getElementById("audio");
-const wordMeaning = document.getElementById("word-definition");
-const synonyms = document.getElementById("synonyms");
-const imagesRow1 = document.getElementById("images-first-row");
-const imagesRow2 = document.getElementById("images-second-row");
-const searchWord = document.getElementById("word-search-form");
-const wordHistoryEl = document.getElementById("word-history");
-let input = document.querySelector('#input');
-let searchBtn = document.querySelector('#search');
-let notFound = document.querySelector('.not_found');
-let defBox = document.querySelector('.def');
-let audioBox = document.querySelector('.audio');
-let loading = document.querySelector('.loading');
+//Public API Keys
+let dictApiKey = "676327db-9f8e-4212-a0e1-d73850d216df";
+let pexelApiKey = "563492ad6f917000010000014a4078a4f8b545fda3f3c33d260ab9d0";
 
+// Get Elements
+let mainEl = document.querySelector("#main-content");
+let mainCard = document.querySelector("#card-main");
+let wordEl = document.querySelector("#word");
+let phonetics = document.querySelector("#phonetics");
+let audio = document.querySelector("#audio");
+let wordMeaning = document.querySelector("#word-definition");
+let synonyms = document.querySelector("#synonyms");
+let imagesRow1 = document.querySelector("#images-first-row");
+let imagesRow2 = document.querySelector("#images-second-row");
+let searchWord = document.querySelector("#word-search-form");
+let wordHistoryEl = document.querySelector("#word-history");
+let input = document.querySelector("#input");
+let defBox = document.querySelector("#short-def");
+let audioBox = document.querySelector(".audio");
 
-searchBtn.addEventListener('click', function(e){
-    e.preventDefault();
+// Storing Searches
+// function storeWord(searchWord) {
+//   var wordBtn = document.createElement("btn");
+//   wordBtn.textContent = wordName;
+//   wordBtn.classList = "col-12 word-btn";
 
-    // CLEAR FIELD
-    audioBox.innerHTML = '';
-    notFound.innerText = '';
-    defBox.innerText = '';
+//   wordHistoryEl.appendChild(wordBtn);
 
-    // GET INPUT
-    let word = input.value;
-    // call API get data
-    if (word === '') {
-        alert('Word is required');
-        return;
-    }
+//   searchHistory.push(searchWord);
 
-    getData(word);
-})
+//   localStorage.setItem("words", JSON.stringify(searchHistory));
+// }
 
-//FETCH AND RESPONSE
-async function getData(word) {
-    loading.style.display = 'block';
-    // Ajax call 
-    const response = await fetch(`https://www.dictionaryapi.com/api/v3/references/collegiate/json/${word}?key=${apiKey}`);
-    const data = await response.json();
-    // if empty result 
-    if (!data.length) {
-        loading.style.display = 'none';
-        notFound.innerText = ' No result found';
-        return;
-    }
+// var loadWord = function () {
+//   storedSearches = JSON.parse(localStorage.getItem("words"));
 
-    // SUGGESTIONS WHEN WORD IS MISPELLED
-    if (typeof data[0] === 'string') {
-        loading.style.display = 'none';
-        let heading = document.createElement('h3');
-        heading.innerText = 'Did you mean?'
-        notFound.appendChild(heading);
-        data.forEach(element => {
-            let suggetion = document.createElement('span');
-            suggetion.classList.add('suggested');
-            suggetion.innerText = element;
-            notFound.appendChild(suggetion);
-            
-        })
-        return;
-    }
+//   if (!storedSearches) {
+//     storedSearches = [];
+//   }
 
-   //AUDIO
-    loading.style.display = 'none';
-    let definition = data[0].shortdef[0];
-    defBox.innerText = definition;
+//   for (var i = 0; i < storedSearches.length; i++) {
+//     storeWord(storedSearches[i]);
+//   }
+// };
 
-   
-    const soundName = data[0].hwi.prs[0].sound.audio;
-        if(soundName) {
-            renderSound(soundName);
-        }
-
-    console.log(data);
-}
-
-function renderSound(soundName) {
-    // MERRIAM WEBSTER SOUNDCLOUD
-    let subfolder = soundName.charAt(0);
-    let soundSrc = `https://media.merriam-webster.com/soundc11/${subfolder}/${soundName}.wav?key=${apiKey}`;
-
-    let aud = document.createElement('audio');
-    aud.src = soundSrc;
-    aud.controls = true;
-    audioBox.appendChild(aud);
-
-}
-
-function displayImages(imageData) {
+function displayImages(response) {
   for (i = 0; i < 3; i++) {
     imagesRow1.innerHTML += `<div class="col"><div class="m-3">
-  <a href=${imageData.photos[i].src.landscape} target="_blank" rel="noopener noreferrer">
-  <img src=${imageData.photos[i].src.landscape} className="img-thumbnail mb-3" alt=${imageData.photos[i].photographer}/>
+  <a href=${response.data.photos[i].src.landscape} target="_blank" rel="noopener noreferrer">
+  <img src=${response.data.photos[i].src.landscape} className="img-thumbnail mb-3" alt=${response.data.photos[i].photographer}/>
   </a>
   </div>`;
   }
   for (i = 3; i < 6; i++) {
     imagesRow2.innerHTML += `<div class="col"><div class="m-3">
-  <a href=${imageData.photos[i].src.landscape} target="_blank" rel="noopener noreferrer">
-  <img src=${imageData.photos[i].src.landscape} className="img-thumbnail mb-3" alt=${imageData.photos[i].photographer}/>
+  <a href=${response.data.photos[i].src.landscape} target="_blank" rel="noopener noreferrer">
+  <img src=${response.data.photos[i].src.landscape} className="img-thumbnail mb-3" alt=${response.data.photos[i].photographer}/>
   </a>
   </div>`;
   }
@@ -111,57 +63,83 @@ function displayImages(imageData) {
 
 function getImages(term) {
   const pexelURL = `https://api.pexels.com/v1/search?query=${term}&per_page=6`;
-  const pexelApiKey =
-    "563492ad6f917000010000014a4078a4f8b545fda3f3c33d260ab9d0";
 
-  fetch(pexelURL, {
-    headers: {
-      Authorization: `token ${pexelApiKey}`,
-    },
-  })
-    .then(function (response) {
-      return response.json();
-    })
-    .then(function (data) {
-      displayImages(data);
-    });
-    getImages(response.data[0].word);
+  axios
+    .get(pexelURL, { headers: { Authorization: `Bearer ${pexelApiKey}` } })
+    .then(displayImages);
 }
 
-var historySearch = function (event) {
-  var wordSearch = event.target.textContent;
+function renderSound(soundName) {
+  // MERRIAM WEBSTER SOUNDCLOUD
+  let subfolder = soundName.charAt(0);
+  let soundSrc = `https://media.merriam-webster.com/soundc11/${subfolder}/${soundName}.wav?key=${dictApiKey}`;
 
-  handleDictResponse(wordSearch);
-  getData(wordSearch);
-  
-};
+  let aud = document.createElement("audio");
+  aud.src = soundSrc;
+  aud.controls = true;
+  audioBox.appendChild(aud);
+}
 
-var storeWord = function (searchWord) {
-  var wordBtn = document.createElement("btn");
-  wordBtn.textContent = wordName;
-  wordBtn.classList = "col-12 word-btn";
+async function getData(word) {
+  mainEl.style.display = "block";
 
-  wordHistoryEl.appendChild(wordBtn);
+  // Ajax call
+  const response = await fetch(
+    `https://www.dictionaryapi.com/api/v3/references/collegiate/json/${word}?key=${dictApiKey}`
+  );
+  const data = await response.json();
+  // if empty result
+  if (!data.length) {
+    wordEl.textContent = " No result found";
+  }
+  // SUGGESTIONS WHEN WORD IS MISPELLED
+  else if (typeof data[0] === "string") {
+    wordEl.innerText = "Did you mean?";
+    data.forEach((element) => {
+      let suggestion = document.createElement("span");
+      suggestion.classList.add("suggested");
+      suggestion.innerText = element;
+      mainCard.appendChild(suggestion);
+    });
+  } else {
+    wordEl.textContent = word;
 
-  searchHistory.push(searchWord);
+    //AUDIO
+    let definition = data[0].shortdef[0];
+    defBox.innerText = definition;
 
-  localStorage.setItem("words", JSON.stringify(searchHistory));
-};
+    const soundName = data[0].hwi.prs[0].sound.audio;
+    if (soundName) {
+      renderSound(soundName);
+    }
+    getImages(data[0].meta.id);
+  }
+}
 
-var loadWord = function () {
-  storedSearches = JSON.parse(localStorage.getItem("words"));
+function searchHandler(event) {
+  event.preventDefault();
 
-  if (!storedSearches) {
-    storedSearches = [];
+  // CLEAR FIELD
+  audioBox.innerHTML = "";
+  wordEl.innerHTML = "";
+  imagesRow1.innerHTML = "";
+  imagesRow2.innerHTML = "";
+  defBox.innerHTML = "";
+
+  // GET INPUT
+  let wordInput = document.querySelector("#word-input");
+  let word = wordInput.value;
+  // call API get data
+  if (word === "") {
+    alert("Word is required");
+    return;
   }
 
-  for (var i = 0; i < storedSearches.length; i++) {
-    storeWord(storedSearches[i]);
-  }
-};
+  getData(word);
 
-loadWord();
+  // Reset Search Field
+  wordInput.value = "";
+}
 
-// wordHistoryEl.addEventListener("click", historySearch);
-searchWord.addEventListener("submit", getData);
-
+// Event Listener for Search Bar
+searchWord.addEventListener("submit", searchHandler);
