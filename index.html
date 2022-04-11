@@ -18,43 +18,41 @@
   </head>
   <body>
     <div class="wrapper container-fluid my-5 px-3">
+
       <!-- Header Section -->
       <header>
         <h1 class="main-title text-center">MuchBetterDictionary</h1>
         <p class="subtitle text-center">the dictionary that does more!</p>
       </header>
 
-      <!-- Search Bar -->
-      <section id="search-bar">
-        <div class="row">
-          <div class="col-md-4 search">
-            <form id="word-search-form">
-              <input
-                type="text"
-                id="word-input"
-                class="form-control rounded-pill"
-                placeholder="What's the word?"
-              />
-              <i class="fa fa-search"></i>
-              <div class="card" id="word-history"></div>
-            </form>
-          </div>
+        <!-- Search Bar -->
+    <section class="input container">
+        <div class="form-wrapper">
+            <div class="input-wrapper">
+              <form id="word-search-form">
+                <input type="text" placeholder="What's the word?" id="input">
+                <button id="search">Search</button>
+              </form>
+            </div>
         </div>
-      </section>
+    </section>
 
-      <!-- Main Section to Display Word Information -->
+     <!-- Main Section to Display Word Information -->
+    <section class="data container">
       <section id="main-content" class="hidden">
         <div id="card-main" class="row card mx-5">
           <div id="term" class="col-4 card-body">
-            <h2 id="word" class="card-title"></h2>
-            <p id="short-def" class="card-subtitle"></p>
-            <p id="phonetics"></p>
-          </div>
-          <div id="images" class="col-8 mt-4">
-            <div id="images-first-row" class="row"></div>
-            <div id="images-second-row" class="row"></div>
-          </div>
+        <span class="loading"></span>
+        <p class="def"></p>
+        <div class="audio"></div>
+        <div class="not_found"></div>
+        <div id="images" class="col-8 mt-4">
+          <div id="images-first-row" class="row"></div>
+          <div id="images-second-row" class="row"></div>
         </div>
+      </div>
+      </div>
+    </section>
         <!-- "short-def" is a short, condensed definition -->
 
         <!-- "functional-label" shows if a verb, noun, adjective etc

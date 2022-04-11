@@ -1,8 +1,7 @@
 // Declare Global Variables
+const apiKey = '676327db-9f8e-4212-a0e1-d73850d216df';
 const mainEl = document.getElementById("main-content");
-const wordnameEl = document.getElementById("word-input");
 const wordEl = document.getElementById("word");
-const wordNameEl = document.getElementById("word-name");
 const phonetics = document.getElementById("phonetics");
 const audio = document.getElementById("audio");
 const wordMeaning = document.getElementById("word-definition");
@@ -11,20 +10,100 @@ const imagesRow1 = document.getElementById("images-first-row");
 const imagesRow2 = document.getElementById("images-second-row");
 const searchWord = document.getElementById("word-search-form");
 const wordHistoryEl = document.getElementById("word-history");
-const apiKey = "676327db-9f8e-4212-a0e1-d73850d216df";
+let input = document.querySelector('#input');
+let searchBtn = document.querySelector('#search');
+let notFound = document.querySelector('.not_found');
+let defBox = document.querySelector('.def');
+let audioBox = document.querySelector('.audio');
+let loading = document.querySelector('.loading');
 
-function displayImages(response) {
+
+searchBtn.addEventListener('click', function(e){
+    e.preventDefault();
+
+    // CLEAR FIELD
+    audioBox.innerHTML = '';
+    notFound.innerText = '';
+    defBox.innerText = '';
+
+    // GET INPUT
+    let word = input.value;
+    // call API get data
+    if (word === '') {
+        alert('Word is required');
+        return;
+    }
+
+    getData(word);
+})
+
+//FETCH AND RESPONSE
+async function getData(word) {
+    loading.style.display = 'block';
+    // Ajax call 
+    const response = await fetch(`https://www.dictionaryapi.com/api/v3/references/collegiate/json/${word}?key=${apiKey}`);
+    const data = await response.json();
+    // if empty result 
+    if (!data.length) {
+        loading.style.display = 'none';
+        notFound.innerText = ' No result found';
+        return;
+    }
+
+    // SUGGESTIONS WHEN WORD IS MISPELLED
+    if (typeof data[0] === 'string') {
+        loading.style.display = 'none';
+        let heading = document.createElement('h3');
+        heading.innerText = 'Did you mean?'
+        notFound.appendChild(heading);
+        data.forEach(element => {
+            let suggetion = document.createElement('span');
+            suggetion.classList.add('suggested');
+            suggetion.innerText = element;
+            notFound.appendChild(suggetion);
+            
+        })
+        return;
+    }
+
+   //AUDIO
+    loading.style.display = 'none';
+    let definition = data[0].shortdef[0];
+    defBox.innerText = definition;
+
+   
+    const soundName = data[0].hwi.prs[0].sound.audio;
+        if(soundName) {
+            renderSound(soundName);
+        }
+
+    console.log(data);
+}
+
+function renderSound(soundName) {
+    // MERRIAM WEBSTER SOUNDCLOUD
+    let subfolder = soundName.charAt(0);
+    let soundSrc = `https://media.merriam-webster.com/soundc11/${subfolder}/${soundName}.wav?key=${apiKey}`;
+
+    let aud = document.createElement('audio');
+    aud.src = soundSrc;
+    aud.controls = true;
+    audioBox.appendChild(aud);
+
+}
+
+function displayImages(imageData) {
   for (i = 0; i < 3; i++) {
     imagesRow1.innerHTML += `<div class="col"><div class="m-3">
-  <a href=${response.data.photos[i].src.landscape} target="_blank" rel="noopener noreferrer">
-  <img src=${response.data.photos[i].src.landscape} className="img-thumbnail mb-3" alt=${response.data.photos[i].photographer}/>
+  <a href=${imageData.photos[i].src.landscape} target="_blank" rel="noopener noreferrer">
+  <img src=${imageData.photos[i].src.landscape} className="img-thumbnail mb-3" alt=${imageData.photos[i].photographer}/>
   </a>
   </div>`;
   }
   for (i = 3; i < 6; i++) {
     imagesRow2.innerHTML += `<div class="col"><div class="m-3">
-  <a href=${response.data.photos[i].src.landscape} target="_blank" rel="noopener noreferrer">
-  <img src=${response.data.photos[i].src.landscape} className="img-thumbnail mb-3" alt=${response.data.photos[i].photographer}/>
+  <a href=${imageData.photos[i].src.landscape} target="_blank" rel="noopener noreferrer">
+  <img src=${imageData.photos[i].src.landscape} className="img-thumbnail mb-3" alt=${imageData.photos[i].photographer}/>
   </a>
   </div>`;
   }
@@ -32,44 +111,29 @@ function displayImages(response) {
 
 function getImages(term) {
   const pexelURL = `https://api.pexels.com/v1/search?query=${term}&per_page=6`;
-  const pexelApiKey = config.pexel_api_key;
+  const pexelApiKey =
+    "563492ad6f917000010000014a4078a4f8b545fda3f3c33d260ab9d0";
 
-  axios
-    .get(pexelURL, { headers: { Authorization: `Bearer ${pexelApiKey}` } })
-    .then(displayImages);
+  fetch(pexelURL, {
+    headers: {
+      Authorization: `token ${pexelApiKey}`,
+    },
+  })
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+      displayImages(data);
+    });
+    getImages(response.data[0].word);
 }
-
-function handleDictResponse(response) {
-  console.log(response);
-  mainEl.setAttribute("style", "display: block;");
-  wordEl.innerText = response.data[0].word;
-  phonetics.innerText = response.data[0].phonetics[0].text;
-
-  getImages(response.data[0].word);
-}
-
-function getDefinition(event) {
-  event.preventDefault();
-
-  const word = document.querySelector("#word-input");
-  const dictRequestUrl = `https://api.dictionaryapi.dev/api/v2/entries/en/${word.value}`;
-
-  axios.get(dictRequestUrl).then(handleDictResponse);
-}
-
-// Event Listener for Search Bar
-searchWord.addEventListener("submit", getDefinition);
-
-
-// //Merriam Webster API key (Ross account)
-// var apiKey = "676327db-9f8e-4212-a0e1-d73850d216df"
-// //Request URL `https://www.dictionaryapi.com/api/v3/references/collegiate/json/${word)?key=apiKey`
 
 var historySearch = function (event) {
   var wordSearch = event.target.textContent;
 
-  getDefinition(wordSearch);
   handleDictResponse(wordSearch);
+  getData(wordSearch);
+  
 };
 
 var storeWord = function (searchWord) {
@@ -98,5 +162,6 @@ var loadWord = function () {
 
 loadWord();
 
-wordHistoryEl.addEventListener("click", historySearch);
-searchWord.addEventListener("submit", getDefinition);
+// wordHistoryEl.addEventListener("click", historySearch);
+searchWord.addEventListener("submit", getData);
+
