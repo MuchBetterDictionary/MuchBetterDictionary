@@ -145,21 +145,18 @@ function searchHandler(event) {
 searchWord.addEventListener("submit", searchHandler);
 
 const randomWord = () => {
-  fetch('https://random-word-api.herokuapp.com/word?number=1')
-  .then(response => {
+  fetch("https://random-word-api.herokuapp.com/word?number=1")
+    .then((response) => {
       return response.json();
-  })
-  .then(response => {
-      word.textContent = response
+    })
+    .then((response) => {
+      word.textContent = response;
       searchHandler(word);
-  })
-  .catch(err => {
+    })
+    .catch((err) => {
       console.log(err);
-      return "No Word Available"
-  });
-  
-}
-searchWord.addEventListener('click', function(){
-  randomWord();
-}
+      return "No Word Available";
+    });
+};
 
+// searchWord.addEventListener("submit", randomWord);
