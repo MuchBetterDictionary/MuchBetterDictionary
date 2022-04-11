@@ -103,7 +103,7 @@ async function getData(word) {
     });
   } else {
     wordEl.textContent = word;
-
+    console.log(data);
     //AUDIO
     let definition = data[0].shortdef[0];
     defBox.innerText = definition;
@@ -143,3 +143,23 @@ function searchHandler(event) {
 
 // Event Listener for Search Bar
 searchWord.addEventListener("submit", searchHandler);
+
+const randomWord = () => {
+  fetch('https://random-word-api.herokuapp.com/word?number=1')
+  .then(response => {
+      return response.json();
+  })
+  .then(response => {
+      word.textContent = response
+      searchHandler(word);
+  })
+  .catch(err => {
+      console.log(err);
+      return "No Word Available"
+  });
+  
+}
+searchWord.addEventListener('click', function(){
+  randomWord();
+}
+
