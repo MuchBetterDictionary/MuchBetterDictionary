@@ -28,6 +28,15 @@ body {
   color: var(--color-white);
 }
 
+.btn-random {
+  border-radius: 25px;
+  padding: 10px 15px;
+  margin: 10px;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
 /* Search Section Styling */
 .search {
   margin: 0 auto;
@@ -49,17 +58,46 @@ body {
   right: 30px;
 }
 
-/* Main Term Section Styling */
+/* Main Definition Section Styling */
+#main-content {
+  border-radius: 20px;
+  color: var(--color-white);
+  min-height: 10vh;
+  width: 100%;
+}
 
-#card-main {
-  color: var(--color-black);
-  margin-top: 5rem;
+.summary-container {
   height: 50vh;
-  width: 90%;
+  margin: 0 auto;
+  padding-top: 20px;
+  width: 75%;
+}
+
+.summary-container p {
+  padding: 0 10px;
 }
 
 img {
   width: 100%;
   border-radius: 5 px;
   margin: 10 px 0;
+}
+
+/* Definition Slider Styling */
+.example {
+  font-style: italic;
+}
+
+.synonyms ul,
+.antonyms ul {
+  margin: 0;
+  padding: 0;
+}
+
+.synonyms li,
+.antonyms li {
+  list-style: none;
+  display: inline-block;
+  margin-right: 15px;
+  font-size: 14px;
 }
