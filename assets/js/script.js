@@ -161,5 +161,6 @@ const randomWord = () => {
 }
 searchWord.addEventListener('click', function(){
   randomWord();
-}
+})
+
 
