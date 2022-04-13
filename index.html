@@ -20,6 +20,7 @@
     <div class="wrapper container-fluid my-5 px-3">
       <!-- Header Section -->
       <header>
+        <button id="random-word" class="btn-random">Word of the Day</button>
         <h1 class="main-title text-center">MuchBetterDictionary</h1>
         <p class="subtitle text-center">the dictionary that does more!</p>
       </header>
@@ -42,33 +43,30 @@
       </section>
 
       <!-- Main Section to Display Word Information -->
-      <section id="main-content" class="hidden">
+      <section id="main-content" class="hidden container-fluid">
+        <div id="card-main" class="summary-container"></div>
+        <div id="definitions-container">
+          <ul id="card-definitions" class="orbit-container"></ul>
+        </div>
+      </section>
+
+      <!-- <section id="main-content" class="hidden">
         <div id="card-main" class="row card mx-5">
-          <div id="term" class="col-4 card-body">
+          <div id="term-container" class="col-4 card-body">
             <h2 id="word" class="card-title"></h2>
             <p id="short-def" class="card-subtitle"></p>
-            <div class="audio"></div>
+            <div id="audio" class="audio-icon"></div>
           </div>
           <div id="images" class="col-8 mt-4">
             <div id="images-first-row" class="row"></div>
             <div id="images-second-row" class="row"></div>
           </div>
         </div>
-        <!-- "short-def" is a short, condensed definition -->
-
-        <!-- "functional-label" shows if a verb, noun, adjective etc
-      "homographs" are for words like 'wind'c, 'bear', 'bat' etc > 
-      where identically spelled words have ompletely different meanings
-    "label" provides brief note on grammatical function 
-    (eg "often attributive) or (eg "informal", "slang", "offensive") etc! -->
         <div id="card-definitions" class="row"></div>
-      </section>
+      </section> -->
 
       <!-- Past Searches Section -->
       <section id="past-searches" class="hidden"></section>
-
-      <!-- Popular Words Section -->
-      <section id="popular-words" class="hidden"></section>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
