@@ -6,13 +6,14 @@ let pexelApiKey = "563492ad6f917000010000014a4078a4f8b545fda3f3c33d260ab9d0";
 // Get Elements
 let mainEl = document.querySelector("#main-content");
 let mainCard = document.querySelector("#card-main");
-let definitionCard = document.querySelector("#card-definitions");
 let wordInput = document.querySelector("#word-input");
 let pastSearchEl = document.querySelector("#past-searches");
 let pastSearch = document.querySelector("#past-search-cont");
 let searchWord = document.querySelector("#word-search-form");
 let randomWord = document.querySelector("#random-word");
 let resetSearch = document.querySelector("#clear-searches");
+let carouselEl = document.querySelector("#image-carousel");
+let definitionCard = document.querySelector("#card-definitions");
 
 // Function to Handle Events for Past Searches
 function pastSearchHandler(event) {
@@ -98,7 +99,7 @@ function getSynonyms(slideDiv, synonymsArray) {
 }
 
 // Function to Validate and Get Antonyms
-function getAntonyms(antonymsArray) {
+function getAntonyms(slideDiv, antonymsArray) {
   if (antonymsArray.length > 0) {
     let antonymsEl = document.createElement("p");
     let antonymsTitle = document.createElement("span");
@@ -137,7 +138,6 @@ function meanings(meaningsData) {
 
     // Create a New Card for Each Definition Returned for Each Part of Speech
     for (let j = 0; j < definitions.length; j++) {
-      let slide = document.createElement("li");
       let slideDiv = document.createElement("div");
       let partofSpeech = document.createElement("h3");
       let definition = document.createElement("p");
@@ -160,37 +160,36 @@ function meanings(meaningsData) {
       getAntonyms(slideDiv, antonymsArray);
       getSynonyms(slideDiv, synonymsArray);
 
-      // Append Everything Created to Orbit Slides
-      slide.appendChild(slideDiv);
-      definitionCard.appendChild(slide);
+      // Append Everything Created to Carousel
+      slideDiv.classList.add("carousel-item");
+
+      definitionCard.appendChild(slideDiv);
     }
   }
+  const firstChild = definitionCard.firstElementChild;
+  firstChild.classList.add("active");
 }
 
 // Display Images
 function displayImages(response) {
-  let imagesCont = document.createElement("ul");
   let numOfImages = 6;
   for (i = 0; i < numOfImages; i++) {
-    let imagesEl = document.createElement("li");
-    let imageEl = document.createElement("figure");
-    let imageLink = document.createElement("a");
+    let imageEl = document.createElement("div");
     let image = document.createElement("img");
 
-    imageLink.href = response.data.photos[i].src.landscape;
-    imageLink.target = "_blank";
     image.src = response.data.photos[i].src.landscape;
     image.alt = response.data.photos[i].photographer;
-    image.classList.add("img-thumbnail");
+    image.classList.add("d-block");
+    image.classList.add("w-100");
+    imageEl.classList.add("carousel-item");
 
-    imageEl.appendChild(imageLink);
+    if (i === 0) {
+      imageEl.classList.add("active");
+    }
+
     imageEl.appendChild(image);
-    imagesEl.appendChild(imageEl);
-    imagesCont.appendChild(imagesEl);
+    carouselEl.appendChild(imageEl);
   }
-
-  imagesCont.classList.add("orbit-container");
-  mainCard.appendChild(imagesCont);
 }
 
 // Function to Get Images
@@ -198,10 +197,7 @@ function imageProcessor(term) {
   let pexelURL = `https://api.pexels.com/v1/search?query=${term}&per_page=6`;
   axios
     .get(pexelURL, { headers: { Authorization: `Bearer ${pexelApiKey}` } })
-    .then(displayImages)
-    .catch((err) => {
-      console.log("No Images Available");
-    });
+    .then(displayImages);
 }
 
 // Function to Display Word Origins
