@@ -1,0 +1,177 @@
+/* Declare Global CSS Variables */
+:root {
+  --color-black: #000000;
+  --color-white: #fff;
+  --color-navy: #233142;
+  --color-blue-gray: #455d7a;
+  --color-salmon: #f95959;
+  --color-gray: #e3e3e3;
+}
+
+/* General Styling */
+body {
+  background-size: 100%;
+  background-image: url("../images/pexels-alex-conchillos-3648850.jpg");
+}
+.hidden {
+  display: none;
+}
+
+/* Header Styling */
+.main-title {
+  font-size: 3rem;
+  color: var(--color-white);
+}
+
+.subtitle {
+  font-size: 1rem;
+  color: var(--color-white);
+}
+
+.btn-random {
+  border-radius: 25px;
+  padding: 10px 15px;
+  margin: 10px;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+/* Search Section Styling */
+.search {
+  margin: 0 auto;
+  position: relative;
+}
+
+.search input {
+  height: 40px;
+}
+
+.search input:focus {
+  box-shadow: none;
+  border: 4px solid var(--color-blue-gray);
+}
+
+.search .fa-microphone {
+  position: absolute;
+  top: 10px;
+  right: 60px;
+}
+
+.search .fa-search {
+  position: absolute;
+  top: 10px;
+  right: 30px;
+}
+
+/* Main Definition Section Styling */
+#main-content {
+  border-radius: 20px;
+  color: var(--color-white);
+  margin: 0 auto;
+  min-height: 10vh;
+  width: 100%;
+}
+
+.summary-container {
+  margin: 0 auto;
+  padding: 40px;
+}
+
+.summary-container p {
+  padding: 0 10px;
+}
+
+.def-cont {
+  background-color: #d3d3d3;
+  border-radius: 25px;
+  color: black;
+  height: 40vh;
+  opacity: 0.5;
+  width: 100%;
+}
+
+.def-carousel-cont {
+  padding: 40px;
+}
+
+#card-definitions {
+  margin: 0 auto;
+  width: 75%;
+  vertical-align: middle;
+}
+
+/* Carousel base class */
+.carousel {
+  margin-bottom: 4rem;
+}
+/* Since positioning the image, we need to help out the caption */
+.carousel-caption {
+  bottom: 3rem;
+  z-index: 10;
+}
+
+/* Declare heights because of positioning of img element */
+.carousel-item {
+  height: 20rem;
+}
+.carousel-item > img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  min-width: 100%;
+  height: 20rem;
+}
+
+.def-cont .carousel-control-prev,
+.def-cont .carousel-control-next {
+  color: black;
+}
+
+/* Definition Slider Styling */
+.example {
+  font-style: italic;
+}
+
+.synonyms ul,
+.antonyms ul {
+  margin: 0;
+  padding: 0;
+}
+
+.synonyms li,
+.antonyms li {
+  list-style: none;
+  display: inline-block;
+  margin-right: 15px;
+  font-size: 14px;
+}
+
+/* Past Searches Styling */
+.history-cont {
+  background-color: white;
+  border-radius: 20px;
+  height: 30vh;
+  margin: 5em auto;
+  opacity: 0.8;
+  padding: 20px;
+  width: 75%;
+}
+
+.history-cont h2 {
+  display: inline-block;
+}
+
+.search-entry {
+  background-color: var(--color-white);
+  border: none;
+  text-decoration: underline;
+}
+
+.btn-reset {
+  background-color: transparent;
+  display: inline-block;
+  border-radius: 25px;
+  margin: 10px;
+  padding: 5px 7px;
+}

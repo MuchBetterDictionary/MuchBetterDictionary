@@ -3,28 +3,135 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>MuchBetter</title>
-    <link rel="stylesheet" href="style.css" />
+    <title>MuchBetterDictionary | Homepage</title>
+    <link rel="stylesheet" href="./assets/css/style.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://kit.fontawesome.com/ec09384b84.js"
+      crossorigin="anonymous"
+    ></script>
   </head>
   <body>
-    <div class="container">
-      <header class="h1">MuchBetterDictionary<br /><span>The dictionary that does more!</span>
+    <div class="wrapper container-fluid my-5 px-3">
+      <!-- Header Section -->
+      <header>
+        <button id="random-word" class="btn-random">Random Word!</button>
+        <h1 class="main-title text-center">MuchBetterDictionary</h1>
+        <p class="subtitle text-center">the dictionary that does more!</p>
       </header>
-      <br/>
-      <div class="input">
-        <button class="btn-search" type="button">
-        <input type="text" class="search-field" placeholder="What's the word?" onkeypress="handle(event)"/>
-      </div>
-      <div class="result">
-        <h1 class="word"></h1>
-        <p class="phonetics"></p>
-        <audio src="" controls></audio>
-        <p class="wordmeaning"></p>
-        <p class="word-definition"></p>
-        <p class="wordmeaning"></p>
-        <div class="synonyms"></div>
-      </div>
+
+      <!-- Search Bar -->
+      <section id="search-bar">
+        <div class="row">
+          <div class="col-md-4 search">
+            <form id="word-search-form">
+              <i class="fa fa-microphone" onclick="record()"></i>
+              <i class="fa fa-search"></i>
+              <input
+                type="text"
+                id="word-input"
+                class="form-control rounded-pill"
+                placeholder="What's the word?"
+              />
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <!-- Main Section to Display Word Information -->
+      <section id="main-content" class="hidden container-fluid">
+        <div class="summary-container row d-flex">
+          <div class="col-left col-6">
+            <div id="card-main"></div>
+            <div id="definitions-container" class="mt-5">
+              <div class="def-cont">
+                <div
+                  id="defCarousel"
+                  class="carousel slide def-carousel-cont"
+                  data-bs-ride="carousel"
+                >
+                  <div id="card-definitions" class="carousel-inner"></div>
+                  <button
+                    class="carousel-control-prev"
+                    type="button"
+                    data-bs-target="#defCarousel"
+                    data-bs-slide="prev"
+                  >
+                    <span
+                      class="carousel-control-prev-icon"
+                      aria-hidden="true"
+                    ></span>
+                    <span class="visually-hidden">Previous</span>
+                  </button>
+                  <button
+                    class="carousel-control-next"
+                    type="button"
+                    data-bs-target="#defCarousel"
+                    data-bs-slide="next"
+                  >
+                    <span
+                      class="carousel-control-next-icon"
+                      aria-hidden="true"
+                    ></span>
+                    <span class="visually-hidden">Next</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            id="imageCarousel"
+            class="carousel slide col-6 mt-5"
+            data-bs-ride="carousel"
+          >
+            <div id="image-carousel" class="carousel-inner"></div>
+            <button
+              class="carousel-control-prev"
+              type="button"
+              data-bs-target="#imageCarousel"
+              data-bs-slide="prev"
+            >
+              <span
+                class="carousel-control-prev-icon"
+                aria-hidden="true"
+              ></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button
+              class="carousel-control-next"
+              type="button"
+              data-bs-target="#imageCarousel"
+              data-bs-slide="next"
+            >
+              <span
+                class="carousel-control-next-icon"
+                aria-hidden="true"
+              ></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Past Searches Section -->
+      <section id="past-searches" class="hidden history-cont">
+        <h2>Past Searches:</h2>
+        <button id="clear-searches" class="btn-reset">Clear</button>
+        <div id="past-search-cont"></div>
+      </section>
     </div>
-    <script src="./script.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="./assets/js/script.js"></script>
   </body>
 </html>
