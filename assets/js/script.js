@@ -329,6 +329,20 @@ function resetHandler() {
   pastSearch.innerHTML = "";
   pastSearch.classList.add("hidden");
 }
+function record() {
+  var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition;
+  var recognition = new SpeechRecognition();
+
+  recognition.onresult = function(event) {
+      console.log(event);
+      var transcript = event.results[0][0].transcript;
+      document.getElementById('word-input').value = transcript;
+      dictProcessor(transcript);
+      storeWord(transcript);
+  }
+  recognition.start();
+
+}
 
 // Event Listeners
 searchWord.addEventListener("submit", searchHandler);
