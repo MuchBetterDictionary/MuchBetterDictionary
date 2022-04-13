@@ -20,7 +20,7 @@
     <div class="wrapper container-fluid my-5 px-3">
       <!-- Header Section -->
       <header>
-        <button id="random-word" class="btn-random">Word of the Day</button>
+        <button id="random-word" class="btn-random">Random Word!</button>
         <h1 class="main-title text-center">MuchBetterDictionary</h1>
         <p class="subtitle text-center">the dictionary that does more!</p>
       </header>
@@ -50,23 +50,11 @@
         </div>
       </section>
 
-      <!-- <section id="main-content" class="hidden">
-        <div id="card-main" class="row card mx-5">
-          <div id="term-container" class="col-4 card-body">
-            <h2 id="word" class="card-title"></h2>
-            <p id="short-def" class="card-subtitle"></p>
-            <div id="audio" class="audio-icon"></div>
-          </div>
-          <div id="images" class="col-8 mt-4">
-            <div id="images-first-row" class="row"></div>
-            <div id="images-second-row" class="row"></div>
-          </div>
-        </div>
-        <div id="card-definitions" class="row"></div>
-      </section> -->
-
       <!-- Past Searches Section -->
-      <section id="past-searches" class="hidden"></section>
+      <section id="past-searches" class="hidden history-cont">
+        <h2>Past Searches:</h2>
+        <button id="clear-searches" class="btn-reset">Clear</button>
+      </section>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>

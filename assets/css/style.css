@@ -78,7 +78,7 @@ body {
 }
 
 img {
-  width: 100%;
+  width: 50%;
   border-radius: 5 px;
   margin: 10 px 0;
 }
@@ -100,4 +100,32 @@ img {
   display: inline-block;
   margin-right: 15px;
   font-size: 14px;
+}
+
+/* Past Searches Styling */
+.history-cont {
+  background-color: var(--color-white);
+  border-radius: 20px;
+  height: 20vh;
+  margin: 5em auto;
+  padding: 20px;
+  width: 75%;
+}
+
+.history-cont h2 {
+  display: inline-block;
+}
+
+.search-entry {
+  background-color: var(--color-white);
+  border: none;
+  text-decoration: underline;
+}
+
+.btn-reset {
+  background-color: transparent;
+  display: inline-block;
+  border-radius: 25px;
+  margin: 10px;
+  padding: 5px 7px;
 }
