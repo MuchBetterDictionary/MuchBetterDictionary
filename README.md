@@ -45,15 +45,18 @@ User Story:
 ```
 AS AN second language learner
 I WANT a website/application that helps me bring context to words
-SO THAT I can learn new words that I am unfamiliar with.
+SO THAT I can better learn new words that I am unfamiliar with.
 ```
 
 Acceptance Criteria:
 
 ```
-GIVEN I need to learn a new word
+GIVEN I need to learn the meaning of a new word
 WHEN I browse to the website/application
 THEN I am able to search for my own word or a random word
+GIVEN some words are encountered through speech, and some through reading text
+WHEN I attempt to learn about a given word
+THEN I can either search through spelling the word OR saying the word
 
 WHEN I search for a word
 THEN I am presented with the definition of the word
@@ -62,6 +65,10 @@ THEN I can hear the pronounciation of the word
 THEN I can see images of the word
 THEN I can see synonyms and antonyms of the word
 THEN I can see the origin of the word
+
+GIVEN that words have many meanings and definitions
+WHEN I am presented with search results
+THEN I am engaged by a pleasing and approachable layout
 
 WHEN I scroll to the bottom of the page
 THEN I am presented with my recent searches
