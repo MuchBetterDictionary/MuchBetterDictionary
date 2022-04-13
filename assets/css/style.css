@@ -87,9 +87,8 @@ body {
   border-radius: 25px;
   color: black;
   height: 40vh;
-  margin: 0 auto;
   opacity: 0.5;
-  width: 80%;
+  width: 100%;
 }
 
 .def-carousel-cont {

@@ -181,6 +181,7 @@ function displayImages(response) {
     image.alt = response.data.photos[i].photographer;
     image.classList.add("d-block");
     image.classList.add("w-100");
+    image.classList.add("rounded");
     imageEl.classList.add("carousel-item");
 
     if (i === 0) {
@@ -347,6 +348,11 @@ function record() {
   recognition.onresult = function (event) {
     var transcript = event.results[0][0].transcript;
     wordInput.value = transcript;
+
+    // Reset Main Section
+    mainCard.innerHTML = "";
+    definitionCard.innerHTML = "";
+
     dictProcessor(transcript);
     storeWord(transcript);
     displaySearchHistory();
