@@ -7,6 +7,7 @@ let pexelApiKey = "563492ad6f917000010000014a4078a4f8b545fda3f3c33d260ab9d0";
 let mainEl = document.querySelector("#main-content");
 let mainCard = document.querySelector("#card-main");
 let definitionCard = document.querySelector("#card-definitions");
+let wordInput = document.querySelector("#word-input");
 let pastSearch = document.querySelector("#past-searches");
 let searchWord = document.querySelector("#word-search-form");
 let randomWord = document.querySelector("#random-word");
@@ -157,7 +158,6 @@ function meanings(meaningsData) {
 
       // Append Everything Created to Orbit Slides
       slide.appendChild(slideDiv);
-      console.log(slide);
       definitionCard.appendChild(slide);
     }
   }
@@ -287,7 +287,6 @@ function searchHandler(event) {
   definitionCard.innerHTML = "";
 
   // Get Searched Word
-  let wordInput = document.querySelector("#word-input");
   let word = wordInput.value.trim();
 
   // Call API to Get Data
@@ -333,15 +332,17 @@ function record() {
   var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition;
   var recognition = new SpeechRecognition();
 
-  recognition.onresult = function(event) {
-      console.log(event);
-      var transcript = event.results[0][0].transcript;
-      document.getElementById('word-input').value = transcript;
-      dictProcessor(transcript);
-      storeWord(transcript);
-  }
-  recognition.start();
+  recognition.onresult = function (event) {
+    var transcript = event.results[0][0].transcript;
+    wordInput.value = transcript;
+    dictProcessor(transcript);
+    storeWord(transcript);
+    displaySearchHistory();
 
+    // Reset Search Field
+    wordInput.value = "";
+  };
+  recognition.start();
 }
 
 // Event Listeners
