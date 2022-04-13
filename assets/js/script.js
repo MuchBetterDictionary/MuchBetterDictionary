@@ -8,7 +8,8 @@ let mainEl = document.querySelector("#main-content");
 let mainCard = document.querySelector("#card-main");
 let definitionCard = document.querySelector("#card-definitions");
 let wordInput = document.querySelector("#word-input");
-let pastSearch = document.querySelector("#past-searches");
+let pastSearchEl = document.querySelector("#past-searches");
+let pastSearch = document.querySelector("#past-search-cont");
 let searchWord = document.querySelector("#word-search-form");
 let randomWord = document.querySelector("#random-word");
 let resetSearch = document.querySelector("#clear-searches");
@@ -36,7 +37,7 @@ function displaySearchHistory() {
 
   // Parse and Display History, if available
   if (history) {
-    pastSearch.classList.remove("hidden");
+    pastSearchEl.classList.remove("hidden");
     history = JSON.parse(history);
 
     for (var i = 0; i < history.length; i++) {
@@ -227,16 +228,20 @@ function phonetics(phoneticsData) {
   for (let i = 0; i < phoneticsData.length; i++) {
     let phoneticBox = document.createElement("p");
     let phoneticText = document.createElement("span");
-    let audioBox = document.createElement("a");
+    let audio = phoneticsData[i].audio;
+
+    if (audio) {
+      let audioBox = document.createElement("a");
+      audioBox.textContent = " 🔊 ";
+      audioBox.href = phoneticsData[i].audio;
+      audioBox.target = "_blank";
+      phoneticBox.appendChild(audioBox);
+    }
 
     phoneticText.textContent = phoneticsData[i].text;
-    audioBox.textContent = " 🔊";
-    audioBox.href = phoneticsData[i].audio;
-    audioBox.target = "_blank";
     phoneticBox.setAttribute("style", "display:inline-block;");
 
     phoneticBox.appendChild(phoneticText);
-    phoneticBox.appendChild(audioBox);
     mainCard.appendChild(phoneticBox);
   }
 }
@@ -311,25 +316,33 @@ function randomProcessor(randomResponse) {
   mainCard.innerHTML = "";
   definitionCard.innerHTML = "";
 
-  dictProcessor(randomResponse.data[0]);
+  // dictProcessor(randomResponse.data[0]);
+  var randomWord =
+    randomResponse[Math.floor(Math.random() * randomResponse.length)];
+  dictProcessor(randomWord);
+  displaySearchHistory();
 }
 
 // Function to Handle Random Word Request
 function randomHandler() {
-  let randomApiURL = "https://random-word-api.herokuapp.com/word?number=1";
-  axios
-    .get(randomApiURL)
-    .then(randomProcessor)
-    .catch((err) => {
-      console.log("No Word Available");
-    });
+  // let randomApiURL = "https://random-word-api.herokuapp.com/word?number=1";
+  // axios
+  //   .get(randomApiURL)
+  //   .then(randomProcessor)
+  //   .catch((err) => {
+  //     console.log("No Word Available");
+  //   });
+
+  let randomArray = ["snood", "cupboard", "knife", "refrigerator", "indict"];
+
+  randomProcessor(randomArray);
 }
 
 // Reset History
 function resetHandler() {
   localStorage.clear();
   pastSearch.innerHTML = "";
-  pastSearch.classList.add("hidden");
+  pastSearchEl.classList.add("hidden");
 }
 function record() {
   var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition;
