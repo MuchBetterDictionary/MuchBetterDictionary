@@ -31,6 +31,9 @@ function displaySearchHistory() {
   // Get History from Local Storage
   var history = localStorage.getItem("searches");
 
+  // Reset Search History Section Before Load
+  pastSearch.innerHTML = "";
+
   // Parse and Display History, if available
   if (history) {
     pastSearch.classList.remove("hidden");
