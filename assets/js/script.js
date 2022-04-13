@@ -22,7 +22,7 @@ function meanings(meaningsData) {
       let partofSpeech = document.createElement("h3");
       let definition = document.createElement("p");
 
-      partofSpeech.textContent = meaningsData[i].partOfSpeech;
+      partofSpeech.textContent = meaningsData[i].partofSpeech;
       definition.textContent = definitions[j].definition;
 
       definition.classList.add("definition");
