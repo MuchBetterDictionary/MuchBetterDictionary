@@ -35,7 +35,21 @@ body {
   position: absolute;
   right: 0;
   top: 0;
+  background-image: linear-gradient(90deg, #fa80d2, #fed757);
 }
+/*background: linear-gradient(45deg );
+  color: white;
+  font-size: 10px;
+  font-family: "source code pro";
+  transition: 0.3s;
+   /*background: linear-gradient(45deg, $gradient-start 10%, $gradient-end 90%);
+  color
+   font-size: 1.3rem;
+   font-family: "Source Code Pro";
+   transition: .3s;
+
+   
+
 
 /* Search Section Styling */
 .search {
