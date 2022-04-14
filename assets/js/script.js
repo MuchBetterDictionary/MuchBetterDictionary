@@ -142,7 +142,7 @@ function meanings(meaningsData) {
       let partofSpeech = document.createElement("h3");
       let definition = document.createElement("p");
 
-      partofSpeech.textContent = meaningsData[i].partofSpeech;
+      partofSpeech.textContent = meaningsData[i].partOfSpeech;
       definition.textContent = definitions[j].definition;
 
       definition.classList.add("definition");
