@@ -34,16 +34,18 @@
       <section id="search-bar">
         <div class="row">
           <div class="col-md-4 search">
-            <form id="word-search-form">
-              <i class="fa fa-microphone" onclick="record()"></i>
-              <i class="fa fa-search"></i>
-              <input
-                type="text"
-                id="word-input"
-                class="form-control rounded-pill"
-                placeholder="What's the word?"
-              />
-            </form>
+            <div id="input-style">
+              <form id="word-search-form">
+                <i class="fa fa-microphone" onclick="record()"></i>
+                <input
+                  type="text"
+                  id="word-input"
+                  class="form-control rounded-pill"
+                  placeholder="What's the word?"
+                />
+                <div id="input-search"></div>
+              </form>
+            </div>
           </div>
         </div>
       </section>
