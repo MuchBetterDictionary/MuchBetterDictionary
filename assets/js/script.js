@@ -9,7 +9,7 @@ let mainCard = document.querySelector("#card-main");
 let wordInput = document.querySelector("#word-input");
 let pastSearchEl = document.querySelector("#past-searches");
 let pastSearch = document.querySelector("#past-search-cont");
-let searchWord = document.querySelector("#word-search-form");
+let searchWord = document.querySelector("#input-style");
 let randomWord = document.querySelector("#random-word");
 let resetSearch = document.querySelector("#clear-searches");
 let carouselEl = document.querySelector("#image-carousel");
@@ -364,6 +364,7 @@ function record() {
 }
 
 // Event Listeners
+
 searchWord.addEventListener("submit", searchHandler);
 randomWord.addEventListener("click", randomHandler);
 pastSearch.addEventListener("click", pastSearchHandler);
