@@ -93,12 +93,7 @@ THEN I am presented with my recent searches
 ## Future Development
 
 - A mobile app that is independent of being on a browser
-- Tailor search results depending on location, so most useful definitions and pictures are displayed
-  <<<<<<< HEAD
-  (e.g. a search for 'breakfast' would display typical breakfast foods in your country of search)
-  =======
-  (e.g. a search for 'breakfast' would display typical breakfast foods in your country of search)
-  > > > > > > > 067608788505360184a458a1b68a09a8766e94b0
+- Tailor search results depending on location, so most useful definitions and pictures are displayed (e.g. a search for 'breakfast' would display typical breakfast foods in your country of search)
 - Add more dictionary API's, such as translation dictionaries, medical/ scientific dictionaries and urban dictionaries
 - Approach language-instruction and language-study companies for collaboration
 
