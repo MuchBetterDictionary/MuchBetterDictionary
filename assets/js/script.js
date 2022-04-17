@@ -424,11 +424,8 @@ function resetContent() {
   errorEl.classList.add("hidden");
 }
 
-// Function to Handle Search Request
-function searchHandler(event) {
-  event.preventDefault();
-
-  // Change Page Layout
+// Function to Change Styling Upon Search
+function changeStyle() {
   nav.classList.remove("hidden");
   header.classList.add("hidden");
   jQuery("#search-cont").detach().appendTo(nav);
@@ -439,6 +436,14 @@ function searchHandler(event) {
     "style",
     "position: relative; margin-top: 0; width: 20%;"
   );
+}
+
+// Function to Handle Search Request
+function searchHandler(event) {
+  event.preventDefault();
+
+  // Change Page Layout
+  changeStyle();
 
   // Reset Main Section
   resetContent();
@@ -461,6 +466,9 @@ function searchHandler(event) {
 
 // Function to Process Random API Response
 function randomProcessor(randomResponse) {
+  // Change Page Layout
+  changeStyle();
+
   // Reset Main Section
   resetContent();
 
