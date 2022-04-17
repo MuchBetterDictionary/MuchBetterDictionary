@@ -1,20 +1,52 @@
 /* Declare Global CSS Variables */
 :root {
+  --gray-color-half-opacity: rgba(89, 110, 121, 0.5);
   --color-black: #000000;
   --color-white: #fff;
   --color-navy: #233142;
   --color-blue-gray: #455d7a;
-  --color-salmon: #f95959;
   --color-gray: #e3e3e3;
 }
 
 /* General Styling */
-body {
-  background-size: 100%;
-  background-image: url("../images/pexels-alex-conchillos-3648850.jpg");
+html {
+  background-color: #000000;
+  height: 100%;
 }
+body {
+  background-color: transparent;
+  font-family: "Roboto", sans-serif !important;
+}
+
 .hidden {
   display: none;
+}
+
+/* Background Styling */
+.background {
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  z-index: -1;
+}
+
+.stretch {
+  height: 100%;
+  opacity: 0.5;
+  width: 100%;
+}
+
+/* Navigation Menu Styling */
+.nav-menu {
+  background-color: transparent;
+}
+
+.navbar-brand span {
+  color: var(--color-white);
+  font-weight: bold;
 }
 
 /* Header Styling */
@@ -29,41 +61,165 @@ body {
 }
 
 .btn-random {
-  font-weight: bolder;
+  background-image: linear-gradient(
+    90deg,
+    var(--color-blue-gray),
+    var(--color-navy)
+  );
   border-radius: 25px;
+  color: var(--color-white);
+  font-weight: bolder;
+  height: 2.5rem;
   padding: 10px 15px;
   margin: 10px;
   position: absolute;
   right: 0;
   top: 0;
-  background-image: linear-gradient(90deg, #fa80d2, #fed757);
 }
 
-/* Search Section Styling */
+/* Main Search Section Styling */
 .search {
   margin: 0 auto;
   position: relative;
 }
 
-.search input {
-  height: 40px;
+.input-cont {
+  position: absolute;
+  margin: auto;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 300px;
+  height: 100px;
+}
+.input-cont .input-search {
+  position: absolute;
+  margin: auto;
+  top: 100px;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 80px;
+  height: 80px;
+  background: var(--color-blue-gray);
+  border-radius: 50%;
+  transition: all 1s;
+  z-index: 4;
+  box-shadow: 0 0 25px 0 rgba(0, 0, 0, 0.4);
 }
 
-.search input:focus {
+.input-cont .fa-microphone {
+  display: none;
+}
+.input-cont .input-search:hover {
+  cursor: pointer;
+}
+.input-cont .input-search::before {
+  content: "";
+  position: absolute;
+  margin: auto;
+  top: 22px;
+  right: 0;
+  bottom: 0;
+  left: 22px;
+  width: 12px;
+  height: 2px;
+  background: white;
+  transform: rotate(45deg);
+  transition: all 0.5s;
+}
+.input-cont .input-search::after {
+  content: "";
+  position: absolute;
+  margin: auto;
+  top: -5px;
+  right: 0;
+  bottom: 0;
+  left: -5px;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  border: 2px solid white;
+  transition: all 0.5s;
+}
+
+.input-cont input {
+  font-family: "Inconsolata", monospace;
+  position: absolute;
+  margin: auto;
+  top: 100px;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 50px;
+  height: 50px;
+  outline: none;
+  border: none;
+  background: #f7a441;
+  color: white;
+  text-shadow: 0 0 10px #f7a441;
+  padding: 0 80px 0 20px;
+  border-radius: 30px;
+  box-shadow: 0 0 25px 0 var(--color-blue-gray),
+    0 20px 25px 0 rgba(0, 0, 0, 0.2);
+  transition: all 1s;
+  opacity: 0;
+  z-index: 5;
+  font-weight: bolder;
+  letter-spacing: 0.1em;
+}
+.input-cont input:hover {
+  cursor: pointer;
+}
+.input-cont input:focus {
+  width: 300px;
+  opacity: 1;
+  cursor: text;
+}
+.input-cont input:focus ~ .input-search {
+  right: -250px;
+  background: #151515;
+  z-index: 6;
+}
+.input-cont input:focus ~ .input-search::before {
+  top: 0;
+  left: 0;
+  width: 25px;
+}
+.input-cont input:focus ~ .input-search::after {
+  top: 0;
+  left: 0;
+  width: 25px;
+  height: 2px;
+  border: none;
+  background: white;
+  border-radius: 0%;
+  transform: rotate(-45deg);
+}
+.input-cont input::placeholder {
+  color: black;
+  opacity: 0.5;
+  font-weight: bolder;
+}
+
+/* Post Search Styling */
+.search-cont {
+  padding-top: 0.3rem;
+}
+.search-cont input {
+  height: 2.5rem;
+}
+
+.search-cont input:focus {
   box-shadow: none;
   border: 4px solid var(--color-blue-gray);
 }
 
-.search .fa-microphone {
+.search-cont .fa-microphone {
   position: absolute;
-  top: 10px;
-  right: 60px;
-}
-
-.search .fa-search {
-  position: absolute;
-  top: 10px;
-  right: 30px;
+  top: 0.9rem;
+  right: 1.8rem;
 }
 
 /* Main Definition Section Styling */
@@ -77,81 +233,75 @@ body {
 
 .summary-container {
   margin: 0 auto;
-  padding: 40px;
+  padding: 40px 40px 0px 40px;
 }
 
 .summary-container p {
   padding: 0 10px;
 }
 
+.phoneticText {
+  display: inline-block;
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+/* General Orbit Styling */
+.image-orbit {
+  min-height: 50vh;
+  height: auto !important;
+}
+
+.def-orbit {
+  min-height: 30vh;
+  height: auto !important;
+}
+
+/* Meaning Carousel Styling */
+.definition-row {
+  margin-top: 0px;
+}
 .def-cont {
-  background-color: #d3d3d3;
-  border-radius: 25px;
-  color: black;
-  height: 40vh;
-  opacity: 0.5;
-  width: 100%;
-}
-
-.def-carousel-cont {
-  padding: 40px;
-}
-
-#card-definitions {
+  color: var(--color-white);
   margin: 0 auto;
-  width: 75%;
-  vertical-align: middle;
+  height: auto;
+  padding: 2rem 4rem;
+  width: 80%;
 }
 
-/* Carousel base class */
-.carousel {
-  margin-bottom: 4rem;
-}
-/* Since positioning the image, we need to help out the caption */
-.carousel-caption {
-  bottom: 3rem;
-  z-index: 10;
+.def-cont .orbit-slide {
+  margin: 0 auto;
+  padding: 3rem 7rem;
 }
 
-/* Declare heights because of positioning of img element */
-.carousel-item {
-  height: 20rem;
-}
-.carousel-item > img {
-  position: absolute;
-  top: 0;
-  left: 0;
-  min-width: 100%;
-  height: 20rem;
-}
-
-.def-cont .carousel-control-prev,
-.def-cont .carousel-control-next {
-  color: black;
-}
-
-/* Definition Slider Styling */
 .example {
   font-style: italic;
 }
 
+.synonyms,
+.antonyms {
+  display: table;
+  word-wrap: break-word;
+}
+
 .synonyms ul,
 .antonyms ul {
-  margin: 0;
-  padding: 0;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  list-style: none;
 }
 
 .synonyms li,
 .antonyms li {
-  list-style: none;
-  display: inline-block;
-  margin-right: 15px;
-  font-size: 14px;
+  display: inline;
+  margin-right: 0.5rem;
+  margin-left: 0.5rem;
 }
 
 /* Past Searches Styling */
 .history-cont {
-  background-color: white;
+  background-color: var(--color-white);
   border-radius: 20px;
   height: 30vh;
   margin: 5em auto;
@@ -167,13 +317,60 @@ body {
 .search-entry {
   background-color: var(--color-white);
   border: none;
+  margin: 5px;
   text-decoration: underline;
 }
 
 .btn-reset {
   background-color: transparent;
   display: inline-block;
+  border: 1px solid grey;
   border-radius: 25px;
   margin: 10px;
   padding: 5px 7px;
+}
+
+/* Error Section Styling */
+.error-cont {
+  background-color: var(--color-white);
+  border-radius: 25px;
+  margin: 3rem auto;
+  min-height: 20vh;
+  opacity: 0.9;
+  padding: 2rem 5rem;
+  text-align: center;
+  width: 75%;
+}
+
+.error-cont h2 {
+  font-weight: bold;
+}
+
+.suggestion {
+  -moz-column-count: 2;
+  -moz-column-gap: 50%;
+  -webkit-column-count: 2;
+  -webkit-column-gap: 50%;
+  column-count: 2;
+  column-gap: 50%;
+}
+
+.suggestion li {
+  list-style: none;
+}
+
+/* Responsive Styling*/
+/* MEDIA QUERY FOR TABLETS AND SMALLER */
+@media screen and (max-width: 768px) {
+  .error-cont {
+    width: 90%;
+  }
+  .def-cont {
+    height: auto;
+    padding: 1rem 2rem;
+    width: 100%;
+  }
+  .history-cont {
+    width: 90%;
+  }
 }

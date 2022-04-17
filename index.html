@@ -1,30 +1,54 @@
 <!DOCTYPE html>
-<html lang="en">
+<html class="no-js" lang="en" dir="ltr">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>MuchBetterDictionary | Homepage</title>
-    <link rel="stylesheet" href="./assets/css/style.css" />
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css"
       rel="stylesheet"
       integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU"
       crossorigin="anonymous"
     />
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
-      crossorigin="anonymous"
-    ></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./assets/css/foundation.css" />
+    <link rel="stylesheet" href="./assets/css/style.css" />
     <script
       src="https://kit.fontawesome.com/ec09384b84.js"
       crossorigin="anonymous"
     ></script>
   </head>
   <body>
+    <!-- Background Image -->
+    <div class="background">
+      <img
+        src="./assets/images/pexels-alex-conchillos-3648850.jpg"
+        class="stretch"
+        alt=""
+      />
+    </div>
+    <nav id="nav-bar" class="navbar navbar-expand-lg nav-menu hidden">
+      <div class="container-fluid">
+        <p class="navbar-brand">
+          <img
+            src="./assets/images/MuchBetterDictionaryLogo.png"
+            alt="MuchBetterDictionary Logo"
+            width="40"
+            height="34"
+            class="d-inline-block align-text-middle me-2"
+          />
+          <span>MuchBetterDictionary</span>
+        </p>
+      </div>
+    </nav>
     <div class="wrapper container-fluid my-5 px-3">
       <!-- Header Section -->
-      <header>
+      <header id="header-section">
         <button id="random-word" class="btn-random">Random Word!</button>
         <h1 class="main-title text-center">MuchBetterDictionary</h1>
         <p class="subtitle text-center">the dictionary that does more!</p>
@@ -33,105 +57,97 @@
       <!-- Search Bar -->
       <section id="search-bar">
         <div class="row">
-          <div class="col-md-4 search">
-            <form id="word-search-form">
-              <i class="fa fa-microphone" onclick="record()"></i>
-              <i class="fa fa-search"></i>
-              <input
-                type="text"
-                id="word-input"
-                class="form-control rounded-pill"
-                placeholder="What's the word?"
-              />
-            </form>
+          <div id="search-cont" class="col-md-4 search">
+            <div id="input" class="input-cont">
+              <form id="word-search-form">
+                <i class="fa fa-microphone" onclick="record()"></i>
+                <input
+                  type="text"
+                  id="word-input"
+                  class="form-control rounded-pill"
+                  placeholder="What's the word?"
+                />
+                <div class="input-search"></div>
+              </form>
+            </div>
           </div>
         </div>
       </section>
 
-      <!-- Main Section to Display Word Information -->
+      <!-- Main Section of Dictionary Content -->
       <section id="main-content" class="hidden container-fluid">
-        <div class="summary-container row d-flex">
-          <div class="col-left col-6">
+        <div class="summary-container row d-flex flex-column flex-md-row">
+          <!-- Div to Hold Summary of Word Information-->
+          <div class="col-left col-12 col-md-6">
             <div id="card-main"></div>
-            <div id="definitions-container" class="mt-5">
-              <div class="def-cont">
-                <div
-                  id="defCarousel"
-                  class="carousel slide def-carousel-cont"
-                  data-bs-ride="carousel"
-                >
-                  <div id="card-definitions" class="carousel-inner"></div>
-                  <button
-                    class="carousel-control-prev"
-                    type="button"
-                    data-bs-target="#defCarousel"
-                    data-bs-slide="prev"
-                  >
-                    <span
-                      class="carousel-control-prev-icon"
-                      aria-hidden="true"
-                    ></span>
-                    <span class="visually-hidden">Previous</span>
+          </div>
+          <!-- Div to Hold Image Context-->
+          <div class="col-right col-12 col-md-6">
+            <div
+              class="orbit image-cont hidden"
+              id="images"
+              role="region"
+              aria-label="Pictures of Searched Word"
+              data-orbit
+            >
+              <div class="orbit-wrapper">
+                <div class="orbit-controls">
+                  <button class="orbit-previous">
+                    <span class="show-for-sr">Previous Slide</span
+                    >&#9664;&#xFE0E;
                   </button>
-                  <button
-                    class="carousel-control-next"
-                    type="button"
-                    data-bs-target="#defCarousel"
-                    data-bs-slide="next"
-                  >
-                    <span
-                      class="carousel-control-next-icon"
-                      aria-hidden="true"
-                    ></span>
-                    <span class="visually-hidden">Next</span>
+                  <button class="orbit-next">
+                    <span class="show-for-sr">Next Slide</span>&#9654;&#xFE0E;
                   </button>
                 </div>
+                <ul id="imageCarousel" class="orbit-container image-orbit"></ul>
               </div>
             </div>
           </div>
-          <div
-            id="imageCarousel"
-            class="carousel slide col-6 mt-5"
-            data-bs-ride="carousel"
-          >
-            <div id="image-carousel" class="carousel-inner"></div>
-            <button
-              class="carousel-control-prev"
-              type="button"
-              data-bs-target="#imageCarousel"
-              data-bs-slide="prev"
+        </div>
+        <!-- Div to Hold Definition Carousel-->
+        <div class="definition-row">
+          <div id="definitions-container" class="def-cont">
+            <div
+              class="orbit"
+              role="region"
+              aria-label="Carousel of Term Meanings"
+              data-orbit
             >
-              <span
-                class="carousel-control-prev-icon"
-                aria-hidden="true"
-              ></span>
-              <span class="visually-hidden">Previous</span>
-            </button>
-            <button
-              class="carousel-control-next"
-              type="button"
-              data-bs-target="#imageCarousel"
-              data-bs-slide="next"
-            >
-              <span
-                class="carousel-control-next-icon"
-                aria-hidden="true"
-              ></span>
-              <span class="visually-hidden">Next</span>
-            </button>
+              <div class="orbit-wrapper">
+                <div class="orbit-controls">
+                  <button class="orbit-previous">
+                    <span class="show-for-sr">Previous Slide</span
+                    >&#9664;&#xFE0E;
+                  </button>
+                  <button class="orbit-next">
+                    <span class="show-for-sr">Next Slide</span>&#9654;&#xFE0E;
+                  </button>
+                </div>
+                <ul
+                  id="card-definitions"
+                  class="orbit-container def-orbit"
+                ></ul>
+              </div>
+            </div>
           </div>
         </div>
       </section>
+
+      <!-- Error Section -->
+      <section id="errors" class="hidden error-cont"></section>
 
       <!-- Past Searches Section -->
       <section id="past-searches" class="hidden history-cont">
         <h2>Past Searches:</h2>
         <button id="clear-searches" class="btn-reset">Clear</button>
-        <div id="past-search-cont"></div>
       </section>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="./assets/js/vendor/jquery.js"></script>
+    <script src="./assets/js/vendor/what-input.js"></script>
+    <script src="./assets/js/vendor/foundation.js"></script>
     <script src="./assets/js/script.js"></script>
   </body>
 </html>
