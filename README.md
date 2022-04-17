@@ -10,7 +10,7 @@
 
 - [General Info](#general-information)
 - [Project Requirements](#project-requirements)
-- [Looking ahead](#future-development)
+- [Looking Ahead](#future-development)
 - [Screenshots](#screenshots)
 - [Contact](#contact)
 
@@ -30,9 +30,7 @@ This repository contains our new and improved dictionary application that allows
 
 ## Project Requirements:
 
-Requirements:
-
-<<<<<<< HEAD
+### Requirements:
 
 - ✅ Use a CSS framework other than Bootstrap.
 - ✅ Be deployed to GitHub Pages.
@@ -45,23 +43,7 @@ Requirements:
 - ✅ Have a clean repository that meets quality coding standards (file structure, naming conventions, follows best practices for class/id-naming conventions, indentation, quality comments, etc.).
 - ✅ Have a quality README (with unique name, description, technologies used, screenshot, and link to deployed application).
 
-> # User Story:
->
-> ✅Use a CSS framework other than Bootstrap.
-> ✅Be deployed to GitHub Pages.
-> ✅Be interactive (i.e: accept and respond to user input).
-> ✅Use at least two server-side APIs.
-> ✅Does not use alerts, confirms, or prompts (use modals).
-> \*Our speech recognition function does have a microphone access prompt, as built-in by the web browser.
-> ✅Use client-side storage to store persistent data.
-> ✅Be responsive.
-> ✅Have a polished UI.
-> ✅Have a clean repository that meets quality coding standards (file structure, naming conventions, follows best practices for class/id-naming conventions, indentation, quality comments, etc.).
-> ✅Have a quality README (with unique name, description, technologies used, screenshot, and link to deployed application).
->
-> > > > > > > 067608788505360184a458a1b68a09a8766e94b0
-
-> User Story:
+### User Story:
 
 ```
 AS A second language learner
@@ -69,7 +51,7 @@ I WANT a website/application that helps me bring context to words
 SO THAT I can better learn new words that I am unfamiliar with.
 ```
 
-> Acceptance Criteria:
+### Acceptance Criteria:
 
 ```
 GIVEN I need to learn the meaning of a new word
