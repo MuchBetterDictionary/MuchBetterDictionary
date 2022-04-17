@@ -5,16 +5,12 @@
 > This repository contains our dictionary application that allows users to search and learn new words that they are unfamiliar with.
 
 > Live Site: https://muchbetterdictionary.github.io/MuchBetterDictionary/
-<<<<<<< HEAD
-=======
-> Live site: https://6257516db493d936abf49dc1--beamish-pixie-e11523.netlify.app/
->>>>>>> 067608788505360184a458a1b68a09a8766e94b0
 
 ## Table of Contents
 
 - [General Info](#general-information)
 - [Project Requirements](#project-requirements)
-- [Looking ahead](#future-development)
+- [Looking Ahead](#future-development)
 - [Screenshots](#screenshots)
 - [Contact](#contact)
 
@@ -34,9 +30,8 @@ This repository contains our new and improved dictionary application that allows
 
 ## Project Requirements:
 
-Requirements:
+### Requirements:
 
-<<<<<<< HEAD
 - ✅ Use a CSS framework other than Bootstrap.
 - ✅ Be deployed to GitHub Pages.
 - ✅ Be interactive (i.e: accept and respond to user input).
@@ -48,29 +43,15 @@ Requirements:
 - ✅ Have a clean repository that meets quality coding standards (file structure, naming conventions, follows best practices for class/id-naming conventions, indentation, quality comments, etc.).
 - ✅ Have a quality README (with unique name, description, technologies used, screenshot, and link to deployed application).
 
-> User Story:
-=======
-✅Use a CSS framework other than Bootstrap. 
-✅Be deployed to GitHub Pages.
-✅Be interactive (i.e: accept and respond to user input).
-✅Use at least two server-side APIs.
-✅Does not use alerts, confirms, or prompts (use modals).
-*Our speech recognition function does have a microphone access prompt, as built-in by the web browser.
-✅Use client-side storage to store persistent data.
-✅Be responsive.
-✅Have a polished UI.
-✅Have a clean repository that meets quality coding standards (file structure, naming conventions, follows best practices for class/id-naming conventions, indentation, quality comments, etc.).
-✅Have a quality README (with unique name, description, technologies used, screenshot, and link to deployed application).
->>>>>>> 067608788505360184a458a1b68a09a8766e94b0
+### User Story:
 
-> User Story:
 ```
 AS A second language learner
 I WANT a website/application that helps me bring context to words
 SO THAT I can better learn new words that I am unfamiliar with.
 ```
 
-> Acceptance Criteria:
+### Acceptance Criteria:
 
 ```
 GIVEN I need to learn the meaning of a new word
@@ -112,12 +93,7 @@ THEN I am presented with my recent searches
 ## Future Development
 
 - A mobile app that is independent of being on a browser
-- Tailor search results depending on location, so most useful definitions and pictures are displayed
-<<<<<<< HEAD
-  (e.g. a search for 'breakfast' would display typical breakfast foods in your country of search)
-=======
-(e.g. a search for 'breakfast' would display typical breakfast foods in your country of search)
->>>>>>> 067608788505360184a458a1b68a09a8766e94b0
+- Tailor search results depending on location, so most useful definitions and pictures are displayed (e.g. a search for 'breakfast' would display typical breakfast foods in your country of search)
 - Add more dictionary API's, such as translation dictionaries, medical/ scientific dictionaries and urban dictionaries
 - Approach language-instruction and language-study companies for collaboration
 
