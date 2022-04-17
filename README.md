@@ -92,6 +92,8 @@ THEN I am presented with my recent searches
 
 ## Future Development
 
+- Write conditionals and further code to ensure 'Random Word' retrieved from Heroku random word API is matched with a result in Merriam Webster dictionary API
+- Further research and perhaps add additional API's to esnure pictures returned are accurate and high quality to the pertaining word.
 - A mobile app that is independent of being on a browser
 - Tailor search results depending on location, so most useful definitions and pictures are displayed (e.g. a search for 'breakfast' would display typical breakfast foods in your country of search)
 - Add more dictionary API's, such as translation dictionaries, medical/ scientific dictionaries and urban dictionaries
