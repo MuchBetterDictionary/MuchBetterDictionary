@@ -68,10 +68,11 @@ body {
   );
   border-radius: 25px;
   color: var(--color-white);
+  font-size: 1rem;
   font-weight: bolder;
   height: 2.5rem;
-  padding: 10px 15px;
-  margin: 10px;
+  padding: 0.625rem 0.938rem;
+  margin: 0.625rem;
   position: absolute;
   right: 0;
   top: 0;
@@ -360,6 +361,23 @@ body {
 }
 
 /* Responsive Styling*/
+/* MEDIA QUERY FOR MID-SIZE DESKTOP SCREENS AND SMALLER */
+@media screen and (max-width: 1160px) {
+  /* this will be applied on any screen smaller than 1160px */
+  .btn-random {
+    font-size: 0.8rem;
+    width: 25%;
+  }
+}
+
+/* MEDIA QUERY FOR SMALLER DESKTOP SCREENS AND SMALLER */
+@media screen and (max-width: 991px) {
+  /* this will be applied on any screen smaller than 991px */
+  .search {
+    width: 60%;
+  }
+}
+
 /* MEDIA QUERY FOR TABLETS AND SMALLER */
 @media screen and (max-width: 768px) {
   .error-cont {
@@ -372,5 +390,12 @@ body {
   }
   .history-cont {
     width: 90%;
+  }
+  .search {
+    width: 70%;
+  }
+  .btn-random {
+    font-size: 0.8rem;
+    width: 25%;
   }
 }
